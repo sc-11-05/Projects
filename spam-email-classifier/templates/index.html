@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Spam Email Classifier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Spam Email Classifier</h1>
+
+        <form action="/predict" method="post">
+            <textarea name="message" rows="6" placeholder="Type your email or message here..."></textarea>
+            <button type="submit">Analyze Message</button>
+        </form>
+
+        {% if prediction_text %}
+            <div class="result 
+                {% if 'Spam' in prediction_text %} spam {% else %} ham {% endif %}">
+                {{ prediction_text }}
+            </div>
+        {% endif %}
+    </div>
+    <footer class="footer">
+    Built by Sujal Chowdhary • 2026
+</footer>
+</body>
+</html>

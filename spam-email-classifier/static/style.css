@@ -1,0 +1,105 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #141e30, #243b55);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 50px;
+    width: 520px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    color: white;
+}
+
+h1 {
+    margin-bottom: 25px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+textarea {
+    width: 100%;
+    padding: 15px;
+    border-radius: 12px;
+    border: none;
+    outline: none;
+    resize: none;
+    font-size: 15px;
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    transition: 0.3s ease;
+}
+
+textarea::placeholder {
+    color: #ddd;
+}
+
+textarea:focus {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+
+button {
+    margin-top: 20px;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(45deg, #ff512f, #dd2476);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(255, 81, 47, 0.4);
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(255, 81, 47, 0.6);
+}
+
+
+.result {
+    margin-top: 25px;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 12px;
+    border-radius: 10px;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+
+.spam {
+    background: rgba(255, 0, 0, 0.2);
+    color: #ff6b6b;
+}
+
+
+.ham {
+    background: rgba(0, 255, 150, 0.2);
+    color: #00ffa3;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.footer {
+    position: absolute;
+    bottom: 15px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.5px;
+}
