@@ -9,3 +9,7 @@ This repository presents a comprehensive collection of projects I have completed
 
 
 **Project3**: Blendor-Addon for adding cubes and merging them
+
+**Project4**: Spam-email classifier
+
+""Project5**: Snake-game
