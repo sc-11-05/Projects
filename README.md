@@ -12,4 +12,6 @@ This repository presents a comprehensive collection of projects I have completed
 
 **Project4**: Spam-email classifier
 
-""Project5**: Snake-game
+**Project5**: Snake-game
+
+**Project6**: Pong
