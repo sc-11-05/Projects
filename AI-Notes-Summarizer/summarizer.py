@@ -40,15 +40,23 @@ def summarize_text(text, style="short"):
             inputs["input_ids"],
             max_length = max_len,
             min_length = min_len,
-            length_penalty = 1.5 if style == "deatiled" else 2.0,
+            length_penalty = 1.0 if style == "detailed" else 2.0,
             num_beams = 8,
             no_repeat_ngram_size = 3,
             early_stopping = True
         )
 
         summary = tokenizer.decode(summary_ids[0], skip_special_token=True)
+
+        summary = summary.replace("<s>","").replace("</s>","").strip()
         summaries.append(summary)
-    return " ".join(summaries)
+
+        full_summary = " ".join(summaries)
+
+        # convert to bullet points
+        sentences = full_summary.split(". ")
+        bullets = "\n".join([f"- {s.strip()}" for s in sentences if s.strip()])
+    return bullets
 
 # ------------------------------
 # Breaking long text into chunks
@@ -66,10 +74,10 @@ def chunk_text(text, max_chunk=500):
 # ----------------
 # User Interaction
 # ----------------
-text = input("Enter your notes: \n")
-style = input("Choose your style (short/detailed): ").lower()
+# text = input("Enter your notes: \n")
+# style = input("Choose your style (short/detailed): ").lower()
 
-result = summarize_text(text)
+# result = summarize_text(text)
 
-print("Summary")
-print(result)
+# print("Summary")
+# print(result)
