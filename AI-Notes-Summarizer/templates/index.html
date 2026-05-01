@@ -1,31 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Notes Summarizer</title>
+    <link rel="stylesheet" href="../static/style.css">
 </head>
 <body>
+
+<div class="container">
     <h1>AI Notes Summarizer</h1>
 
-    <form method="Post" enctype="multipart/form-data">
-        <input type="file" name="pdf" accept=".pdf">
+    <form method="POST" enctype="multipart/form-data">
+
+        <textarea name="notes" rows="6" placeholder="Enter your notes here..."></textarea>
+
         <br><br>
-        
-        <textarea name="notes" rows="10" cols="10" placeholder="Enter your notes here..."></textarea>
+
+        <label>Upload PDF:</label>
+        <input type="file" name="pdf">
+
         <br><br>
-        
-        <label>Choose:style</label>
+
+        <label>Style:</label>
         <select name="style">
             <option value="short">Short</option>
             <option value="detailed">Detailed</option>
         </select>
+
         <br><br>
 
         <button type="submit">Summarize</button>
     </form>
 
-    <h2>Summary:</h2>
-    <pre>{{summary}}</pre>
+    {% if summary %}
+    <div class="summary-box">
+        <h3>Summary:</h3>
+        <div class="summary-text">{{ summary }}</div>
+    </div>
+    {% endif %}
+</div>
+
 </body>
 </html>
