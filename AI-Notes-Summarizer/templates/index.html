@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>AI Notes Summarizer</title>
-    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
@@ -16,8 +16,17 @@
         <br><br>
 
         <label>Upload PDF:</label>
-        <input type="file" name="pdf">
 
+        <div class="drop-zone" id="drop-zone">
+            <p>Drag & drop PDF here or click to select</p>
+            <input type="file" name="pdf" id="file-input" accept=".pdf" hidden>
+        </div>
+
+
+        <div class="file-preview" id="file-preview" style="display: none;">
+            <span id="file-name"></span>
+            <button type="button" id="remove-file">❌</button>
+        </div> 
         <br><br>
 
         <label>Style:</label>
@@ -31,6 +40,11 @@
         <button type="submit">Summarize</button>
     </form>
 
+    <div id="loading" class="loading">
+        <div class="spinner"></div>
+        <p>Summarizing...</p>
+    </div>
+
     {% if summary %}
     <div class="summary-box">
         <h3>Summary:</h3>
@@ -38,6 +52,63 @@
     </div>
     {% endif %}
 </div>
+
+<script>
+    const form = document.querySelector("form");
+    const loading = document.getElementById("loading");
+
+    form.addEventListener("submit", function(){
+        loading.style.display = "block"
+    });
+
+
+    const dropZone = document.getElementById("drop-zone");
+    const fileinput = document.getElementById("file-input")
+    const fileNameDisplay = document.getElementById("file-name");
+    const filePreview = document.getElementById("file-preview");
+    const removeBtn = document.getElementById("remove-file");
+
+
+    // adding files by drag and drop
+    dropZone.addEventListener("click", ()=> fileinput.click());
+
+    fileinput.addEventListener("change",()=>{
+        if(fileinput.files.length > 0){
+            fileNameDisplay.textContent = "📄 " + fileinput.files[0].name;
+            filePreview.style.display = "flex";
+        }
+    });
+
+    dropZone.addEventListener("dragover", (e)=>{
+        e.preventDefault();
+        dropZone.classList.add("active"); 
+    });
+
+    dropZone.addEventListener("dragleave", ()=>{
+        dropZone.classList.remove("active"); 
+    });
+
+    dropZone.addEventListener("drop", (e)=>{
+        e.preventDefault();
+        dropZone.classList.remove("active");
+
+        const files = e.dataTransfer.files;
+        fileinput.files = files;
+
+        if(files.length > 0){
+            fileNameDisplay.textContent = "📄 " + fileinput.files[0].name;
+            filePreview.style.display = "flex";
+        }
+    });
+
+    // remove files
+    removeBtn.addEventListener("click", ()=>{
+        fileinput.value = "";
+        fileNameDisplay.textContent = "";
+        filePreview.style.display = "none";
+    });
+
+</script>
 
 </body>
 </html>
